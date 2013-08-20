@@ -54,13 +54,7 @@ Redmine::WikiFormatting::Macros.register do
     id = args.first
     unless id.blank? or Paste.secure_id?(id)
       paste = Paste.find_by_id(id)
-      if paste
-        unless paste.title.blank?
-          link_to(paste.title, paste_path(id))
-        else
-          link_to("paste ##{id}", paste_path(id))
-        end
-      end
+      link_to(paste.title, paste_path(id)) if paste
     end
   end
 end
